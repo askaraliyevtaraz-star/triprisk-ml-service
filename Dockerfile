@@ -13,6 +13,5 @@ RUN pip install \
 
 COPY app ./app
 COPY artifacts ./artifacts
-COPY this_file_does_not_exist.txt .
 
 CMD ["fastapi", "run", "app/main.py", "--host", "0.0.0.0", "--port", "8000"]
