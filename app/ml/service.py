@@ -64,7 +64,8 @@ class ModelService:
 
         probability = float(self.model.predict_proba(x)[0, 1])
 
-        risk_class = int(probability >= self.threshold)
+        # risk_class = int(probability >= self.threshold)
+        risk_class = 7
 
         return probability, risk_class
 
