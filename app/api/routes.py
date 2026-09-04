@@ -53,6 +53,15 @@ def model_info(
     )
 
 
+@router.get("/ready")
+def ready(request: Request) -> dict[str, bool]:
+    service = get_model_service(request)
+
+    return {
+        "ready": service.is_loaded,
+    }
+
+
 @router.post(
     "/predict",
     response_model=PredictionResponse,
