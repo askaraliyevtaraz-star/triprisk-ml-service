@@ -33,3 +33,14 @@ def test_model_info(
     ]
 
     assert 0 <= data["risk_threshold"] <= 1
+
+
+def test_ready(
+    client: TestClient,
+) -> None:
+    response = client.get("/ready")
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "ready": True,
+    }
