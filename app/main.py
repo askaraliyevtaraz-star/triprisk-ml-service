@@ -22,6 +22,10 @@ async def lifespan(app: FastAPI):
     service = ModelService(
         model_path=settings.model_path,
         threshold=settings.risk_threshold,
+        model_source=settings.model_source,
+        mlflow_tracking_uri=(settings.mlflow_tracking_uri),
+        registered_model_name=(settings.registered_model_name),
+        model_alias=settings.model_alias,
     )
 
     service.load()

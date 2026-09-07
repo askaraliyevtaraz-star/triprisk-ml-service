@@ -60,3 +60,4 @@ class ModelInfoResponse(BaseModel):
     model_version: str
     features: list[str]
     risk_threshold: float
+    model_source: str

@@ -32,6 +32,8 @@ def test_model_info(
         "trip_duration_minutes",
     ]
 
+    assert data["model_source"] == "local"
+
     assert 0 <= data["risk_threshold"] <= 1
 
 

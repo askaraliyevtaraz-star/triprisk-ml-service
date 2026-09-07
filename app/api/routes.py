@@ -47,9 +47,10 @@ def model_info(
     service = get_model_service(request)
 
     return ModelInfoResponse(
-        model_version=service.model_version or "unknown",
+        model_version=(service.model_version or "unknown"),
         features=service.features,
         risk_threshold=service.threshold,
+        model_source=service.model_source,
     )
 
 
