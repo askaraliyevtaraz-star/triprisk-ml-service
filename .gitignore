@@ -13,3 +13,7 @@ htmlcov/
 .vscode/
 
 *.log
+
+mlflow.db
+mlartifacts/
+mlruns/

@@ -1,5 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -18,6 +19,17 @@ class Settings(BaseSettings):
         env_file=".env",
         extra="ignore",
     )
+
+    model_source: Literal[
+        "local",
+        "mlflow",
+    ] = "local"
+
+    mlflow_tracking_uri: str = "http://127.0.0.1:5000"
+
+    registered_model_name: str = "TripRiskClassifier"
+
+    model_alias: str = "champion"
 
 
 @lru_cache
