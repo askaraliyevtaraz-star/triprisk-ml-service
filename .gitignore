@@ -17,3 +17,14 @@ htmlcov/
 mlflow.db
 mlartifacts/
 mlruns/
+
+airflow/.env
+
+airflow/logs/*
+!airflow/logs/.gitkeep
+
+airflow/data/*
+!airflow/data/.gitkeep
+
+airflow/config/*
+!airflow/config/.gitkeep

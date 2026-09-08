@@ -265,6 +265,8 @@ The Docker build runs only after the code-quality and test job succeeds.
 * scikit-learn
 * NumPy
 * joblib
+- Apache Airflow
+- MLflow
 
 ### API
 
@@ -287,6 +289,7 @@ The Docker build runs only after the code-quality and test job succeeds.
 * Git
 * GitHub
 * GitHub Actions
+
 
 ## Project Structure
 
@@ -348,3 +351,13 @@ Planned additions include:
 * PySpark preprocessing;
 * cloud deployment;
 * monitoring and observability.
+
+## ML Training Pipeline
+
+Airflow orchestrates:
+
+prepare_data
+→ parallel model training
+→ model selection
+→ MLflow Model Registry
+→ champion model promotion
