@@ -361,3 +361,20 @@ prepare_data
 → model selection
 → MLflow Model Registry
 → champion model promotion
+
+## Distributed Feature Engineering
+
+PySpark is used to transform event-level telemetry into
+trip-level model features.
+
+Pipeline:
+
+raw telemetry
+→ window features
+→ trip aggregations
+→ dimension enrichment
+→ partitioned Parquet
+
+The pipeline demonstrates Spark SQL/DataFrames, partitions,
+shuffles, broadcast joins, caching, AQE and execution-plan
+inspection.
