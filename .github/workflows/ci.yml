@@ -71,6 +71,12 @@ jobs:
           tags: triprisk-api:ci
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Validate Airflow Compose
+        run: |
+          docker compose \
+            -f airflow/docker-compose.yaml \
+            --env-file airflow/.env.example \
+            config > /dev/null
   
   publish:
     name: Publish Docker Image
