@@ -378,3 +378,19 @@ raw telemetry
 The pipeline demonstrates Spark SQL/DataFrames, partitions,
 shuffles, broadcast joins, caching, AQE and execution-plan
 inspection.
+
+## AWS Deployment
+
+The TripRisk service can be deployed to AWS using:
+
+Docker
+→ Amazon ECR
+→ Amazon ECS
+→ AWS Fargate
+
+Container logs are streamed to Amazon CloudWatch Logs.
+
+The deployment uses an ECS task execution IAM role for
+pulling private ECR images and publishing logs.
+
+Model artifacts can additionally be stored in Amazon S3.
