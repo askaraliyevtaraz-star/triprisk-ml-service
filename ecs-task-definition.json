@@ -1,0 +1,41 @@
+{
+    "runtimePlatform":  {
+                            "operatingSystemFamily":  "LINUX",
+                            "cpuArchitecture":  "X86_64"
+                        },
+    "networkMode":  "awsvpc",
+    "cpu":  "256",
+    "requiresCompatibilities":  [
+                                    "FARGATE"
+                                ],
+    "containerDefinitions":  [
+                                 {
+                                     "name":  "triprisk-api",
+                                     "logConfiguration":  {
+                                                              "logDriver":  "awslogs",
+                                                              "options":  {
+                                                                              "awslogs-region":  "eu-central-1",
+                                                                              "awslogs-stream-prefix":  "ecs",
+                                                                              "awslogs-group":  "/ecs/triprisk-api"
+                                                                          }
+                                                          },
+                                     "environment":  [
+                                                         {
+                                                             "value":  "INFO",
+                                                             "name":  "TRIPRISK_LOG_LEVEL"
+                                                         }
+                                                     ],
+                                     "essential":  true,
+                                     "image":  "792068516519.dkr.ecr.eu-central-1.amazonaws.com/triprisk-ml-service:746ed6b",
+                                     "portMappings":  [
+                                                          {
+                                                              "protocol":  "tcp",
+                                                              "containerPort":  8000
+                                                          }
+                                                      ]
+                                 }
+                             ],
+    "family":  "triprisk-api",
+    "executionRoleArn":  "arn:aws:iam::792068516519:role/ecsTaskExecutionRole",
+    "memory":  "512"
+}

@@ -28,3 +28,5 @@ airflow/data/*
 
 airflow/config/*
 !airflow/config/.gitkeep
+
+ecs-service.json
