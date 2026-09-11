@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: triprisk-api
+  namespace: triprisk
+
+spec:
+  replicas: 2
+
+  revisionHistoryLimit: 3
+
+  strategy:
+    type: RollingUpdate
+
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+  selector:
+    matchLabels:
+      app: triprisk-api
+
+  template:
+    metadata:
+      labels:
+        app: triprisk-api
+
+    spec:
+      containers:
+        - name: api
+
+          image: triprisk-api:k8s-v1
+
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - name: http
+              containerPort: 8000
+
+          envFrom:
+            - configMapRef:
+                name: triprisk-config
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+
+            limits:
+              cpu: "1"
+              memory: "768Mi"
+
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+
+            periodSeconds: 2
+            timeoutSeconds: 2
+            failureThreshold: 30
+
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http
+
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 2
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3

@@ -394,3 +394,49 @@ The deployment uses an ECS task execution IAM role for
 pulling private ECR images and publishing logs.
 
 Model artifacts can additionally be stored in Amazon S3.
+
+                 Developer
+                    |
+                 Docker
+                    |
+                    v
+               Amazon ECR
+                    |
+                    v
+              ECS / Fargate
+                    |
+            +-------+-------+
+            |               |
+        FastAPI         CloudWatch
+            |
+         /predict
+
+## Kubernetes
+
+The TripRisk service includes Kubernetes manifests for:
+
+- Deployment-based application management;
+- replicated API Pods;
+- ClusterIP service discovery;
+- ConfigMap-based runtime configuration;
+- startup, readiness and liveness probes;
+- resource requests and limits;
+- rolling updates and rollback.
+
+The manifests were validated locally using a kind Kubernetes
+cluster.
+
+                 Kubernetes Cluster
+
+                  Deployment
+                      |
+                  ReplicaSet
+                  /        \
+                Pod        Pod
+                 \          /
+                  \        /
+                   Service
+                      |
+                port-forward
+                      |
+                    Client
